@@ -3,8 +3,8 @@ from Constantes import *
 from Funciones import mostrar_texto
 
 pygame.init()
-fuente = pygame.font.SysFont("Arial Narrow",32)
-fuente_boton = pygame.font.SysFont("Arial Narrow",23)
+fuente = pygame.font.SysFont("qatar-2022-book",32)
+fuente_boton = pygame.font.SysFont("qatar-2022-book",23)
 boton_volver = {}
 boton_volver["superficie"] = pygame.Surface(TAMAÑO_BOTON_VOLVER)
 boton_volver["rectangulo"] = boton_volver["superficie"].get_rect()
@@ -24,8 +24,8 @@ def mostrar_rankings(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Even
     
     pantalla.fill(COLOR_BLANCO)
     boton_volver["rectangulo"] = pantalla.blit(boton_volver["superficie"],(10,10))
-    mostrar_texto(boton_volver["superficie"],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
-    mostrar_texto(pantalla,f"ACA SE DEBE MOSTRAR EL TOP 10",(20,200),fuente,COLOR_NEGRO)
+    mostrar_texto(boton_volver["superficie"],"Volver",(10,10),fuente_boton,COLOR_BLANCO)
+    mostrar_texto(pantalla,f"Aca se debe mostrar el Top 10",(20,200),fuente,COLOR_NEGRO)
     
     return retorno
                 

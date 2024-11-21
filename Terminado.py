@@ -4,7 +4,7 @@ from Funciones import mostrar_texto
 
 pygame.init()
 
-fuente = pygame.font.SysFont("Arial Narrow",40)
+fuente = pygame.font.SysFont("qatar-2022-book",40)
 cuadro = {}
 cuadro["superficie"] = pygame.Surface(CUADRO_TEXTO)
 cuadro["rectangulo"] = cuadro["superficie"].get_rect()

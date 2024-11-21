@@ -3,7 +3,7 @@ from Constantes import *
 from Funciones import mostrar_texto
 
 pygame.init()
-fuente_menu = pygame.font.SysFont("Arial Narrow",30)
+fuente_menu = pygame.font.SysFont("qatar-2022-book",25)
 lista_botones = []
 
 for i in range(4):
@@ -45,9 +45,9 @@ def mostrar_menu(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event])-
     lista_botones[1]["rectangulo"] = pantalla.blit(lista_botones[1]["superficie"],(125,195))
     lista_botones[2]["rectangulo"] = pantalla.blit(lista_botones[2]["superficie"],(125,275))
     lista_botones[3]["rectangulo"] = pantalla.blit(lista_botones[3]["superficie"],(125,355))
-    mostrar_texto(lista_botones[0]["superficie"],"JUGAR",(80,10),fuente_menu,COLOR_BLANCO)
-    mostrar_texto(lista_botones[1]["superficie"],"CONFIGURACION",(20,10),fuente_menu,COLOR_BLANCO)
-    mostrar_texto(lista_botones[2]["superficie"],"PUNTUACIONES",(25,10),fuente_menu,COLOR_BLANCO)
-    mostrar_texto(lista_botones[3]["superficie"],"SALIR",(80,10),fuente_menu,COLOR_BLANCO)
+    mostrar_texto(lista_botones[0]["superficie"],"Jugar",(80,10),fuente_menu,COLOR_BLANCO)
+    mostrar_texto(lista_botones[1]["superficie"],"Configuracion",(20,10),fuente_menu,COLOR_BLANCO)
+    mostrar_texto(lista_botones[2]["superficie"],"Puntuaciones",(25,10),fuente_menu,COLOR_BLANCO)
+    mostrar_texto(lista_botones[3]["superficie"],"Salir",(80,10),fuente_menu,COLOR_BLANCO)
     
     return retorno

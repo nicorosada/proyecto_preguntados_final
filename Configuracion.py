@@ -4,8 +4,8 @@ from Funciones import mostrar_texto
 
 pygame.init()
 
-fuente_boton = pygame.font.SysFont("Arial Narrow",23)
-fuente_volumen = pygame.font.SysFont("Arial Narrow",50)
+fuente_boton = pygame.font.SysFont("qatar-2022-book",23)
+fuente_volumen = pygame.font.SysFont("qatar-2022-book",50)
 
 boton_suma = {}
 boton_suma["superficie"] = pygame.Surface(TAMAÑO_BOTON_VOLUMEN)
@@ -49,9 +49,9 @@ def mostrar_configuracion(pantalla:pygame.Surface,cola_eventos:list[pygame.event
     boton_resta["rectangulo"] = pantalla.blit(boton_resta['superficie'],(20,200))
     boton_volver["rectangulo"] = pantalla.blit(boton_volver['superficie'],(10,10))
     
-    mostrar_texto(boton_suma["superficie"],"VOL +",(0,10),fuente_boton,COLOR_NEGRO)
-    mostrar_texto(boton_resta["superficie"],"VOL -",(0,10),fuente_boton,COLOR_NEGRO)
-    mostrar_texto(boton_volver["superficie"],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
+    mostrar_texto(boton_suma["superficie"],"Vol +",(0,10),fuente_boton,COLOR_NEGRO)
+    mostrar_texto(boton_resta["superficie"],"Vol -",(0,10),fuente_boton,COLOR_NEGRO)
+    mostrar_texto(boton_volver["superficie"],"Volver",(10,10),fuente_boton,COLOR_BLANCO)
     mostrar_texto(pantalla,f"{datos_juego["volumen_musica"]} %",(200,200),fuente_volumen,COLOR_NEGRO)
 
     return retorno

@@ -16,9 +16,9 @@ for i in range(3):
     cuadro_respuesta["rectangulo"] = cuadro_respuesta["superficie"].get_rect()
     cartas_respuestas.append(cuadro_respuesta)
 
-fuente_pregunta = pygame.font.SysFont("Arial Narrow",30)
-fuente_respuesta = pygame.font.SysFont("Arial Narrow",23)
-fuente_texto = pygame.font.SysFont("Arial Narrow",25)
+fuente_pregunta = pygame.font.SysFont("qatar-2022-book",30)
+fuente_respuesta = pygame.font.SysFont("qatar-2022-book",23)
+fuente_texto = pygame.font.SysFont("qatar-2022-book",25)
 mezclar_lista(lista_preguntas)
 indice = 0 #INMUTABLE -> En la funcion las declaro como global
 bandera_respuesta = False #INMUTABLE -> En la funcion las declaro como global
