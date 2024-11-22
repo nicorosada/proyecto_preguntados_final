@@ -5,6 +5,14 @@ from Funciones import *
 
 pygame.init()
 
+#fondo
+fondo = pygame.image.load("fondo_juego.jpg")
+fondo = pygame.transform.scale(fondo, VENTANA)
+
+# Carga de imagenes para las preguntas
+IMAGEN_PREGUNTA = pygame.image.load("imagen_pregunta.png")
+IMAGEN_PREGUNTA = pygame.transform.scale(IMAGEN_PREGUNTA, TAMAÑO_PREGUNTA)
+
 # Carga de imágenes para las respuestas
 IMAGEN_BLANCA = pygame.image.load("boton_respuesta.png")
 IMAGEN_VERDE = pygame.image.load("boton_correcta.png")
@@ -20,7 +28,7 @@ cuadro_pregunta["superficie"] = pygame.Surface(TAMAÑO_PREGUNTA)
 cuadro_pregunta["rectangulo"] = cuadro_pregunta["superficie"].get_rect()
 
 cartas_respuestas = []
-for i in range(3):
+for i in range(4):
     cuadro_respuesta = {}
     cuadro_respuesta["superficie"] = IMAGEN_BLANCA.copy()  # Usa la imagen blanca como fondo inicial
     cuadro_respuesta["rectangulo"] = cuadro_respuesta["superficie"].get_rect()
@@ -40,7 +48,8 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
 
     retorno = "juego"
 
-    cuadro_pregunta["superficie"].fill(COLOR_ROJO)
+    cuadro_pregunta["superficie"].blit(IMAGEN_PREGUNTA, (0, 0))
+
 
     if bandera_respuesta:
         pygame.time.delay(500)
@@ -74,7 +83,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
 
                     print(f"SE HIZO CLICK EN UNA RESPUESTA {respuesta_usuario}")
                     bandera_respuesta = True
-
+                
                     if indice == len(lista_preguntas):
                         indice = 0
                         mezclar_lista(lista_preguntas)
@@ -85,14 +94,17 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(cartas_respuestas[0]["superficie"], f"{pregunta_actual['respuesta_1']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[1]["superficie"], f"{pregunta_actual['respuesta_2']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[2]["superficie"], f"{pregunta_actual['respuesta_3']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_4']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
 
-    pantalla.fill(COLOR_AZUL)
+    # pantalla.fill(COLOR_AZUL)
+    pantalla.blit(fondo, (0, 0))
     pantalla.blit(cuadro_pregunta["superficie"], (80, 80))
 
     # Dibuja las respuestas en la pantalla
-    cartas_respuestas[0]['rectangulo'] = pantalla.blit(cartas_respuestas[0]['superficie'], (125, 245))
-    cartas_respuestas[1]['rectangulo'] = pantalla.blit(cartas_respuestas[1]['superficie'], (125, 315))
-    cartas_respuestas[2]['rectangulo'] = pantalla.blit(cartas_respuestas[2]['superficie'], (125, 385))
+    cartas_respuestas[0]['rectangulo'] = pantalla.blit(cartas_respuestas[0]['superficie'], (600, 100))
+    cartas_respuestas[1]['rectangulo'] = pantalla.blit(cartas_respuestas[1]['superficie'], (600, 200))
+    cartas_respuestas[2]['rectangulo'] = pantalla.blit(cartas_respuestas[2]['superficie'], (600, 300))
+    cartas_respuestas[3]['rectangulo'] = pantalla.blit(cartas_respuestas[3]['superficie'], (600, 400))
 
     # Muestra puntuación y vidas
     mostrar_texto(pantalla, f"PUNTUACION: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
