@@ -68,12 +68,16 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
             for i in range(len(cartas_respuestas)):
                 if cartas_respuestas[i]['rectangulo'].collidepoint(evento.pos):
                     respuesta_usuario = (i + 1)
-
+                    contador_bonus=0
+                    print(f"contador bonus: {contador_bonus}")
                     if verificar_respuesta(datos_juego, pregunta_actual, respuesta_usuario):
                         # Cambia el fondo a verde si la respuesta es correcta
                         CLICK_SONIDO.play()
                         cartas_respuestas[i]['superficie'] = IMAGEN_VERDE.copy()
                         print("RESPUESTA CORRECTA")
+                        if datos_juego["aciertos_consecutivos"] == 5:
+                            datos_juego["vidas"] += 1
+                            datos_juego["aciertos_consecutivos"] = 0
                     else:
                         # Cambia el fondo a rojo si la respuesta es incorrecta
                         # ERROR_SONIDO.play()
@@ -94,7 +98,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(cartas_respuestas[0]["superficie"], f"{pregunta_actual['respuesta_1']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[1]["superficie"], f"{pregunta_actual['respuesta_2']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[2]["superficie"], f"{pregunta_actual['respuesta_3']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
-    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_4']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_correcta']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
 
     # pantalla.fill(COLOR_AZUL)
     pantalla.blit(fondo, (0, 0))

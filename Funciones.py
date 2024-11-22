@@ -24,6 +24,7 @@ def mezclar_lista(lista_preguntas:list) -> None:
     
 def verificar_respuesta(datos_juego:dict,pregunta_actual:dict,respuesta:int) -> bool:
     if respuesta == pregunta_actual["respuesta_correcta"]:
+        datos_juego["aciertos_consecutivos"] += 1
         datos_juego["puntuacion"] += PUNTUACION_ACIERTO
         retorno = True
     else:
@@ -33,7 +34,7 @@ def verificar_respuesta(datos_juego:dict,pregunta_actual:dict,respuesta:int) -> 
             
         #CON PUNTOS NEGATIVOS
         #datos_juego["puntuacion"] -= PUNTUACION_ERROR
-        
+        datos_juego["aciertos_consecutivos"] = 0
         datos_juego["vidas"] -= 1
         retorno = False
     
