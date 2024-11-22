@@ -5,6 +5,7 @@ from Juego import *
 from Configuracion import *
 from Rankings import *
 from Terminado import *
+from moviepy.editor import VideoFileClip
 
 #Configuraciones Basicas
 pygame.init()
@@ -18,6 +19,52 @@ reloj = pygame.time.Clock()
 datos_juego = {"puntuacion":0,"vidas":CANTIDAD_VIDAS,"nombre":"","volumen_musica":100}
 ventana_actual = "menu"
 bandera_musica = False
+
+# Ruta al video
+VIDEO_PATH = "intro_mundial2.mp4"
+
+# Crear la ventana de Pygame según el tamaño del video
+clip = VideoFileClip(VIDEO_PATH)
+video_width, video_height = clip.size  # Obtener las dimensiones del video
+pantalla = pygame.display.set_mode((video_width, video_height))  # Ajustar el tamaño de la ventana
+pygame.display.set_caption("Presentación del Juego")
+
+# Función para reproducir el video con sonido
+def reproducir_video(video_path):
+    """Reproduce un video con sonido en la ventana de Pygame."""
+    clip = VideoFileClip(video_path)  # Cargar el video con MoviePy
+    fps = clip.fps  # Obtener los FPS del video
+    audio = clip.audio  # Obtener la pista de audio del video
+
+    # Guardar el audio del video como un archivo temporal y cargarlo con pygame
+    audio.write_audiofile("temp_audio.mp3")  # Guardar como archivo de audio
+    pygame.mixer.music.load("temp_audio.mp3")  # Cargar el audio con pygame.mixer
+    pygame.mixer.music.play()  # Reproducir el audio del video
+
+    for frame in clip.iter_frames(fps=fps, with_times=False):
+        # Convertir el frame a un formato compatible con Pygame
+        frame_surface = pygame.surfarray.make_surface(frame.swapaxes(0, 1))
+        pantalla.blit(frame_surface, (0, 0))  # Dibujar el frame en la pantalla
+        pygame.display.update()  # Actualizar la pantalla
+
+        # Manejo de eventos para permitir cerrar la ventana durante la reproducción
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                clip.close()
+                pygame.quit()
+                return
+
+        reloj.tick(fps)  # Mantener los FPS del video
+
+    clip.close()  # Cerrar el video al terminar
+    pygame.mixer.music.stop()  # Detener la música al finalizar el video
+
+# Reproducir el video de introducción
+reproducir_video(VIDEO_PATH)
+
+
+
+
 
 #Ciclo de vida
 while corriendo:
@@ -46,6 +93,7 @@ while corriendo:
     elif ventana_actual == "salir":
         corriendo = False
     
+
     #Actualizar cambios
     pygame.display.flip()
 
