@@ -2,7 +2,7 @@ import pygame
 from Constantes import *
 from Preguntas import *
 from Funciones import *
-
+cant_vidas = CANTIDAD_VIDAS
 pygame.init()
 
 #fondo
@@ -45,6 +45,7 @@ bandera_respuesta = False  # INMUTABLE -> En la funcion las declaro como global
 def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict) -> str:
     global indice
     global bandera_respuesta
+    global cant_vidas
 
     retorno = "juego"
 
@@ -83,6 +84,8 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
                         # ERROR_SONIDO.play()
                         cartas_respuestas[i]['superficie'] = IMAGEN_ROJA.copy()
                         # retorno = "terminado"
+                        cant_vidas -= 1
+                        
                         print("RESPUESTA INCORRECTA")
 
                     print(f"SE HIZO CLICK EN UNA RESPUESTA {respuesta_usuario}")
@@ -92,6 +95,9 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
                         indice = 0
                         mezclar_lista(lista_preguntas)
                     indice += 1
+
+                    if cant_vidas == 0:
+                        retorno = "terminado"
 
     # Muestra el texto de la nueva pregunta y respuestas
     mostrar_texto(cuadro_pregunta["superficie"], f"{pregunta_actual['pregunta']}", (20, 20), fuente_pregunta, COLOR_NEGRO)

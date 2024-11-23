@@ -62,10 +62,6 @@ bandera_musica = False
 # # Reproducir el video de introducción
 # reproducir_video(VIDEO_PATH)
 
-
-
-
-
 #Ciclo de vida
 while corriendo:
     reloj.tick(FPS)
