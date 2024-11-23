@@ -18,6 +18,18 @@ IMAGEN_BLANCA = pygame.image.load("boton_respuesta.png")
 IMAGEN_VERDE = pygame.image.load("boton_correcta.png")
 IMAGEN_ROJA = pygame.image.load("boton_incorrecta.png")
 
+#Carga de imagen para comidones
+imagen_comodin_puntos_x2 = pygame.image.load("boton_nuevo.png")
+boton_comodin_puntos_x2 = {
+    "superficie": imagen_comodin_puntos_x2,
+    "rectangulo": imagen_comodin_puntos_x2.get_rect(),
+}
+imagen_comodin_pasar_pregunta = pygame.image.load("boton_nuevo.png")
+boton_comodin_pasar_pregunta = {
+    "superficie": imagen_comodin_pasar_pregunta,
+    "rectangulo": imagen_comodin_pasar_pregunta.get_rect(),
+}
+
 # Escalado de las imágenes al tamaño de las respuestas
 IMAGEN_BLANCA = pygame.transform.scale(IMAGEN_BLANCA, TAMAÑO_RESPUESTA)
 IMAGEN_VERDE = pygame.transform.scale(IMAGEN_VERDE, TAMAÑO_RESPUESTA)
@@ -42,7 +54,7 @@ indice = 0  # INMUTABLE -> En la funcion las declaro como global
 bandera_respuesta = False  # INMUTABLE -> En la funcion las declaro como global
 
 
-def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict) -> str:
+def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict, comodines: dict, disponibilidad_comodines: dict) -> str:
     global indice
     global bandera_respuesta
     global cant_vidas
@@ -67,15 +79,31 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
             retorno = "salir"
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             for i in range(len(cartas_respuestas)):
+                #LOGICA DE COMODINES
+                if disponibilidad_comodines["comodin_x2"] and boton_comodin_puntos_x2['rectangulo'].collidepoint(evento.pos):
+                    comodines["comodin_x2"] = True
+                    disponibilidad_comodines["comodin_x2"] = False
+                    print("COMODIN X2 ACTIVADO")
+                elif disponibilidad_comodines["comodin_pasar"] and boton_comodin_pasar_pregunta["rectangulo"].collidepoint(evento.pos):
+                    comodines["comodin_pasar"] = True
+                    disponibilidad_comodines["comodin_pasar"] = False
+                    print("COMODIN PASAR ACTIVADO")
+                    # Lógica para pasar a la siguiente pregunta
+                    indice += 1
+                    if indice >= len(lista_preguntas):  # Si se llega al final, reinicia el índice
+                        indice = 0
+                        mezclar_lista(lista_preguntas)
+                    bandera_respuesta = True  # Marca la bandera para que la pantalla se actualice
+                    comodines["comodin_pasar"] = False  # Reinicia el estado del comodín
                 if cartas_respuestas[i]['rectangulo'].collidepoint(evento.pos):
                     respuesta_usuario = (i + 1)
-                    contador_bonus=0
-                    print(f"contador bonus: {contador_bonus}")
                     if verificar_respuesta(datos_juego, pregunta_actual, respuesta_usuario):
                         # Cambia el fondo a verde si la respuesta es correcta
                         CLICK_SONIDO.play()
                         cartas_respuestas[i]['superficie'] = IMAGEN_VERDE.copy()
                         print("RESPUESTA CORRECTA")
+                        if comodines["comodin_x2"]: # Si se activa suma otros 100 puntos a la puntuacion
+                            datos_juego["puntuacion"] += PUNTUACION_ACIERTO
                         if datos_juego["aciertos_consecutivos"] == 5:
                             datos_juego["vidas"] += 1
                             datos_juego["aciertos_consecutivos"] = 0
@@ -95,6 +123,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
                         indice = 0
                         mezclar_lista(lista_preguntas)
                     indice += 1
+                    comodines["comodin_x2"] = False 
 
                     if cant_vidas == 0:
                         retorno = "terminado"
@@ -115,6 +144,14 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     cartas_respuestas[1]['rectangulo'] = pantalla.blit(cartas_respuestas[1]['superficie'], (600, 200))
     cartas_respuestas[2]['rectangulo'] = pantalla.blit(cartas_respuestas[2]['superficie'], (600, 300))
     cartas_respuestas[3]['rectangulo'] = pantalla.blit(cartas_respuestas[3]['superficie'], (600, 400))
+
+    # Dibuja y muestra los comodines
+    if disponibilidad_comodines["comodin_x2"]:
+        boton_comodin_puntos_x2["rectangulo"] = pantalla.blit(boton_comodin_puntos_x2["superficie"], (70, 400))
+        mostrar_texto(pantalla, "Puntos x2", (180, 420), fuente_texto, COLOR_NEGRO)
+    if disponibilidad_comodines["comodin_pasar"]:
+        boton_comodin_pasar_pregunta["rectangulo"] = pantalla.blit(boton_comodin_pasar_pregunta["superficie"], (70, 300))
+        mostrar_texto(pantalla, "Pasar Pregunta", (180, 320), fuente_texto, COLOR_NEGRO)
 
     # Muestra puntuación y vidas
     mostrar_texto(pantalla, f"PUNTUACION: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)

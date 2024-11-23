@@ -39,6 +39,15 @@ def verificar_respuesta(datos_juego:dict,pregunta_actual:dict,respuesta:int) -> 
         retorno = False
     
     return retorno
+
+def verificar_comodin(comodines: dict, datos_juego:dict)-> bool:
+    if comodines ["comodin_x2"]:
+        datos_juego["puntuacion"] += PUNTUACION_ACIERTO
+        retorno = True
+    else:
+        retorno = False
+    return retorno
+
     
 def reiniciar_estadisticas(datos_juego:dict):
     datos_juego["puntuacion"] = 0

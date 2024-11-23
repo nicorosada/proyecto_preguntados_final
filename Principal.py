@@ -17,6 +17,8 @@ pantalla = pygame.display.set_mode(VENTANA)
 corriendo = True
 reloj = pygame.time.Clock()
 datos_juego = {"puntuacion":0,"vidas":CANTIDAD_VIDAS,"nombre":"","volumen_musica":100,"aciertos_consecutivos":0}
+comodines = {"comodin_pasar":False,"comodin_x2":False}
+disponibilidad_comodines = {"comodin_pasar":True, "comodin_x2": True}
 ventana_actual = "menu"
 bandera_musica = False
 
@@ -76,7 +78,7 @@ while corriendo:
         #     pygame.mixer.music.set_volume(porcentaje_volumen)
         #     pygame.mixer.music.play(-1)
         #     bandera_musica = True
-        ventana_actual = mostrar_juego(pantalla,cola_eventos,datos_juego)
+        ventana_actual = mostrar_juego(pantalla,cola_eventos,datos_juego,comodines,disponibilidad_comodines)
     elif ventana_actual == "configuraciones":
         ventana_actual = mostrar_configuracion(pantalla,cola_eventos,datos_juego)
     elif ventana_actual == "rankings":
