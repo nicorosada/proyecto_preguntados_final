@@ -18,13 +18,13 @@ IMAGEN_BLANCA = pygame.image.load("boton_respuesta.png")
 IMAGEN_VERDE = pygame.image.load("boton_correcta.png")
 IMAGEN_ROJA = pygame.image.load("boton_incorrecta.png")
 
-#Carga de imagen para comidones
-imagen_comodin_puntos_x2 = pygame.image.load("boton_nuevo.png")
+#Carga de imagen para comodines
+imagen_comodin_puntos_x2 = pygame.image.load("x2.png")
 boton_comodin_puntos_x2 = {
     "superficie": imagen_comodin_puntos_x2,
     "rectangulo": imagen_comodin_puntos_x2.get_rect(),
 }
-imagen_comodin_pasar_pregunta = pygame.image.load("boton_nuevo.png")
+imagen_comodin_pasar_pregunta = pygame.image.load("pasar_pregunta.png")
 boton_comodin_pasar_pregunta = {
     "superficie": imagen_comodin_pasar_pregunta,
     "rectangulo": imagen_comodin_pasar_pregunta.get_rect(),
@@ -147,11 +147,11 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
 
     # Dibuja y muestra los comodines
     if disponibilidad_comodines["comodin_x2"]:
-        boton_comodin_puntos_x2["rectangulo"] = pantalla.blit(boton_comodin_puntos_x2["superficie"], (70, 400))
-        mostrar_texto(pantalla, "Puntos x2", (180, 420), fuente_texto, COLOR_NEGRO)
+        boton_comodin_puntos_x2["rectangulo"] = pantalla.blit(boton_comodin_puntos_x2["superficie"], (200, 400))
+        # mostrar_texto(pantalla, "Puntos x2", (180, 420), fuente_texto, COLOR_NEGRO)
     if disponibilidad_comodines["comodin_pasar"]:
-        boton_comodin_pasar_pregunta["rectangulo"] = pantalla.blit(boton_comodin_pasar_pregunta["superficie"], (70, 300))
-        mostrar_texto(pantalla, "Pasar Pregunta", (180, 320), fuente_texto, COLOR_NEGRO)
+        boton_comodin_pasar_pregunta["rectangulo"] = pantalla.blit(boton_comodin_pasar_pregunta["superficie"], (70, 400))
+        # mostrar_texto(pantalla, "Pasar Pregunta", (70, 450), fuente_texto, COLOR_NEGRO)
 
     # Muestra puntuación y vidas
     mostrar_texto(pantalla, f"PUNTUACION: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
