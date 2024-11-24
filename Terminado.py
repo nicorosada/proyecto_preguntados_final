@@ -1,8 +1,23 @@
 import pygame
 from Constantes import *
 from Funciones import mostrar_texto
+import os
+import json
+from datetime import datetime
 
 pygame.init()
+
+def generar_json(nombre_archivo:str,nuevo_jugador:list):
+    if os.path.exists("Datos jugadores.json"):
+        with open("Datos jugadores.json", "r") as archivo:
+            lista_jugadores = json.load(archivo)
+    else:
+        lista_jugadores = []
+
+    lista_jugadores.append(nuevo_jugador)
+
+    with open("Datos jugadores.json", "w") as archivo:
+        json.dump(lista_jugadores, archivo, indent=4)
 
 fuente = pygame.font.SysFont("qatar-2022-book",40)
 cuadro = {}
@@ -37,6 +52,17 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     nombre += letra_presionada.upper()
                 else:
                     nombre += letra_presionada
+
+            if (letra_presionada == "return") and (len(nombre) > 0):
+                    fecha_actual = datetime.now().strftime("%d/%m/%Y")
+                    nuevo_jugador = {"nombre": nombre, "puntaje": datos_juego["puntuacion"], "fecha": fecha_actual}
+                    generar_json("Datos jugadores.json",nuevo_jugador)
+                    print(f"Nombre guardado en JSON: {nombre}")
+                    cuadro['superficie'].fill(COLOR_BLANCO)
+                    nombre = ""
+                    retorno = "menu"
+            
+            print(letra_presionada)
         
         
     pantalla.fill(COLOR_BLANCO)
