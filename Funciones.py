@@ -49,4 +49,10 @@ def reiniciar_datos_juego() -> dict:
                 "volumen_musica": 100,
                 "aciertos_consecutivos": 0
             }
+
+def reiniciar_comodines() -> dict:
+    return {
+        "comodin_pasar":True,
+        "comodin_x2": True
+    }
    

@@ -75,6 +75,7 @@ while corriendo:
         if ventana_actual == "juego":
             # Reiniciar datos del juego al comenzar una nueva partida
             datos_juego = reiniciar_datos_juego()
+            disponibilidad_comodines = reiniciar_comodines()
     elif ventana_actual == "juego":
         # if bandera_musica == False:
         #     porcentaje_volumen = datos_juego["volumen_musica"] / 300

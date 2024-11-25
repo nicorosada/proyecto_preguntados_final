@@ -134,7 +134,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(cartas_respuestas[0]["superficie"], f"{pregunta_actual['respuesta_1']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[1]["superficie"], f"{pregunta_actual['respuesta_2']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[2]["superficie"], f"{pregunta_actual['respuesta_3']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
-    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_correcta']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_4']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
 
     # pantalla.fill(COLOR_AZUL)
     pantalla.blit(fondo, (0, 0))

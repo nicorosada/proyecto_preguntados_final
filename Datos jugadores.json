@@ -1,42 +1,17 @@
 [
     {
-        "nombre": "nico1",
-        "puntaje": 425,
-        "fecha": "23/11/2024"
+        "nombre": "LOLITA",
+        "puntaje": 325,
+        "fecha": "25/11/2024"
     },
     {
         "nombre": "LIONEL",
-        "puntaje": 425,
-        "fecha": "24/11/2024"
-    },
-    {
-        "nombre": "LIONEL",
-        "puntaje": 425,
-        "fecha": "24/11/2024"
-    },
-    {
-        "nombre": "LIONEL",
-        "puntaje": 175,
-        "fecha": "24/11/2024"
-    },
-    {
-        "nombre": "GONZA",
-        "puntaje": 625,
-        "fecha": "24/11/2024"
+        "puntaje": 125,
+        "fecha": "25/11/2024"
     },
     {
         "nombre": "PEPE",
-        "puntaje": 450,
-        "fecha": "24/11/2024"
-    },
-    {
-        "nombre": "LEANDRO",
-        "puntaje": 175,
-        "fecha": "24/11/2024"
-    },
-    {
-        "nombre": "FELIPE",
-        "puntaje": 125,
-        "fecha": "24/11/2024"
+        "puntaje": 325,
+        "fecha": "25/11/2024"
     }
 ]
