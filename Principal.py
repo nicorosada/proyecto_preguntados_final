@@ -5,6 +5,7 @@ from Juego import *
 from Configuracion import *
 from Rankings import *
 from Terminado import *
+from Funciones import *
 # from moviepy.editor import VideoFileClip
 
 #Configuraciones Basicas
@@ -71,6 +72,9 @@ while corriendo:
     
     if ventana_actual == "menu":
         ventana_actual = mostrar_menu(pantalla,cola_eventos)
+        if ventana_actual == "juego":
+            # Reiniciar datos del juego al comenzar una nueva partida
+            datos_juego = reiniciar_datos_juego()
     elif ventana_actual == "juego":
         # if bandera_musica == False:
         #     porcentaje_volumen = datos_juego["volumen_musica"] / 300

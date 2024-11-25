@@ -1,6 +1,6 @@
 import pygame
 from Constantes import *
-from Funciones import mostrar_texto
+from Funciones import *
 import os
 import json
 from datetime import datetime
@@ -61,7 +61,6 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     cuadro['superficie'].fill(COLOR_BLANCO)
                     nombre = ""
                     retorno = "menu"
-            
             print(letra_presionada)
         
         
