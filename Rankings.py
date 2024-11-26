@@ -9,9 +9,10 @@ pygame.init()
 
 
 
-fuente = pygame.font.SysFont("qatar-2022-book",32)
+fuente = pygame.font.SysFont("qatar-2022-book",22)
 fuente_boton = pygame.font.SysFont("qatar-2022-book",23)
 imagen_volver = pygame.image.load("volver.png")
+imagen_menu = pygame.image.load("top10.png")
 boton_volver = {
     "superficie": imagen_volver,
     "rectangulo": imagen_volver.get_rect(),
@@ -53,7 +54,8 @@ def mostrar_rankings(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Even
                 CLICK_SONIDO.play()
                 retorno = "menu"
     
-    pantalla.fill(COLOR_BLANCO)
+    pantalla.fill(COLOR_VIOLETA)
+    pantalla.blit(imagen_menu,(165,70))
     boton_volver["rectangulo"] = pantalla.blit(boton_volver["superficie"],(10,10))
     mostrar_texto(boton_volver["superficie"],"Volver",(10,10),fuente_boton,COLOR_BLANCO)
     # mostrar_texto(pantalla,f"Aca se debe mostrar el Top 10",(20,200),fuente,COLOR_NEGRO)
@@ -62,13 +64,16 @@ def mostrar_rankings(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Even
 
 
 
-    y = 100
+    y = 150
 
     if lista_elementos == []:
-        mostrar_texto(pantalla,"NO SE REGISTRARON \nPARTIDAS",(100,230),fuente,COLOR_NEGRO)
+        mostrar_texto(pantalla,"NO SE REGISTRARON PARTIDAS",(315,275),fuente,COLOR_BLANCO)
     else:
         for i in range(len(lista_elementos)):
-            mostrar_texto(pantalla,f"{i+1}. {lista_elementos[i]['nombre']}: {lista_elementos[i]['puntaje']} puntos. fecha: {lista_elementos[i]['fecha']}",(150,y),fuente,COLOR_NEGRO)
-            y += 45
+            mostrar_texto(pantalla,f"{lista_elementos[i]['nombre']} ",(335,y),fuente,COLOR_BLANCO)
+            mostrar_texto(pantalla,f"{i+1}.",(290,y),fuente,COLOR_BLANCO)
+            mostrar_texto(pantalla,f"{lista_elementos[i]['puntaje']} ",(600,y),fuente,COLOR_BLANCO)
+            y += 35
 
     return retorno              
+

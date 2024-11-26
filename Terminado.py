@@ -7,6 +7,9 @@ from datetime import datetime
 
 pygame.init()
 
+fondo = pygame.image.load("terminado.png")
+fondo = pygame.transform.scale(fondo, VENTANA)
+
 def generar_json(nombre_archivo:str,nuevo_jugador:list):
     if os.path.exists("Datos jugadores.json"):
         with open("Datos jugadores.json", "r") as archivo:
@@ -23,13 +26,15 @@ fuente = pygame.font.SysFont("qatar-2022-book",40)
 cuadro = {}
 cuadro["superficie"] = pygame.Surface(CUADRO_TEXTO)
 cuadro["rectangulo"] = cuadro["superficie"].get_rect()
-cuadro['superficie'].fill(COLOR_AZUL)
+cuadro['superficie'].fill(COLOR_BLANCO)
 nombre = ""
 
 def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],datos_juego:dict) -> str:
     global nombre
     retorno = "terminado"
-    
+
+
+
     for evento in cola_eventos:
         if evento.type == pygame.QUIT:
             #Estaria bueno forzarle al usuario que no pueda salir del juego hasta que guarde la puntuacion -> A gusto de ustedes
@@ -42,7 +47,7 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
             
             if letra_presionada == "backspace" and len(nombre) > 0:
                 nombre = nombre[0:-1]#Elimino el ultimo
-                cuadro["superficie"].fill(COLOR_AZUL)
+                cuadro["superficie"].fill(COLOR_BLANCO)
             
             if letra_presionada == "space":
                 nombre += " "
@@ -58,15 +63,16 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     nuevo_jugador = {"nombre": nombre, "puntaje": datos_juego["puntuacion"], "fecha": fecha_actual}
                     generar_json("Datos jugadores.json",nuevo_jugador)
                     print(f"Nombre guardado en JSON: {nombre}")
-                    cuadro['superficie'].fill(COLOR_BLANCO)
+                    cuadro['superficie'].fill(COLOR_NEGRO)
                     nombre = ""
+                    reiniciar_datos_juego(datos_juego)
                     retorno = "menu"
             print(letra_presionada)
         
-        
-    pantalla.fill(COLOR_BLANCO)
-    cuadro["rectangulo"] = pantalla.blit(cuadro["superficie"],(200,200))
-    mostrar_texto(cuadro["superficie"],nombre,(10,0),fuente,COLOR_BLANCO)
-    mostrar_texto(pantalla,f"Usted obtuvo: {datos_juego["puntuacion"]} puntos",(250,100),fuente,COLOR_NEGRO)
+    pantalla.blit(fondo, (0, 0))
     
+    cuadro["rectangulo"] = pantalla.blit(cuadro["superficie"],(340,300))
+    mostrar_texto(cuadro["superficie"],nombre,(10,10),fuente,COLOR_NEGRO)
+    mostrar_texto(pantalla,f"Usted obtuvo: {datos_juego["puntuacion"]} puntos",(250,220),fuente,COLOR_NEGRO)
+
     return retorno

@@ -41,14 +41,11 @@ def verificar_respuesta(datos_juego:dict,pregunta_actual:dict,respuesta:int) -> 
     return retorno
 
     
-def reiniciar_datos_juego() -> dict:
-    return {
-                "puntuacion": 0,
-                "vidas": CANTIDAD_VIDAS,
-                "nombre": "",
-                "volumen_musica": 100,
-                "aciertos_consecutivos": 0
-            }
+def reiniciar_datos_juego(datos_juego:dict) -> None:
+    datos_juego ["puntuacion"] = 0
+    datos_juego ["vidas"] = CANTIDAD_VIDAS
+    datos_juego ["aciertos_consecutivos"] = 0
+    datos_juego ["nombre"] = ""  
 
 def reiniciar_comodines() -> dict:
     return {
