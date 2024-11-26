@@ -11,10 +11,13 @@ pygame.init()
 
 fuente = pygame.font.SysFont("qatar-2022-book",32)
 fuente_boton = pygame.font.SysFont("qatar-2022-book",23)
-boton_volver = {}
-boton_volver["superficie"] = pygame.Surface(TAMAÑO_BOTON_VOLVER)
-boton_volver["rectangulo"] = boton_volver["superficie"].get_rect()
-boton_volver["superficie"].fill(COLOR_AZUL)
+imagen_volver = pygame.image.load("volver.png")
+boton_volver = {
+    "superficie": imagen_volver,
+    "rectangulo": imagen_volver.get_rect(),
+}
+
+
 
 def parse_json(nombre_archivo:str):
     '''
@@ -55,15 +58,17 @@ def mostrar_rankings(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Even
     mostrar_texto(boton_volver["superficie"],"Volver",(10,10),fuente_boton,COLOR_BLANCO)
     # mostrar_texto(pantalla,f"Aca se debe mostrar el Top 10",(20,200),fuente,COLOR_NEGRO)
     lista_elementos = parse_json("Datos jugadores.json")
-    ordenar_lista_ranking(lista_elementos)
+    lista_elementos = ordenar_lista_ranking(lista_elementos)
 
-    y = 160
+
+
+    y = 100
 
     if lista_elementos == []:
         mostrar_texto(pantalla,"NO SE REGISTRARON \nPARTIDAS",(100,230),fuente,COLOR_NEGRO)
     else:
         for i in range(len(lista_elementos)):
-            mostrar_texto(pantalla,f"{i+1}. {lista_elementos[i]['nombre']}: {lista_elementos[i]['puntaje']}",(175,y),fuente,COLOR_NEGRO)
+            mostrar_texto(pantalla,f"{i+1}. {lista_elementos[i]['nombre']}: {lista_elementos[i]['puntaje']} puntos. fecha: {lista_elementos[i]['fecha']}",(150,y),fuente,COLOR_NEGRO)
             y += 45
 
     return retorno              

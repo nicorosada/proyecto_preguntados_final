@@ -17,7 +17,7 @@ pygame.display.set_icon(icono)
 pantalla = pygame.display.set_mode(VENTANA)
 corriendo = True
 reloj = pygame.time.Clock()
-datos_juego = {"puntuacion":0,"vidas":CANTIDAD_VIDAS,"nombre":"","volumen_musica":100,"aciertos_consecutivos":0}
+datos_juego = {"puntuacion":0,"vidas":3,"nombre":"","volumen_musica":100,"aciertos_consecutivos":0}
 comodines = {"comodin_pasar":False,"comodin_x2":False}
 disponibilidad_comodines = {"comodin_pasar":True, "comodin_x2": True}
 ventana_actual = "menu"
@@ -72,10 +72,10 @@ while corriendo:
     
     if ventana_actual == "menu":
         ventana_actual = mostrar_menu(pantalla,cola_eventos)
-        if ventana_actual == "juego":
-            # Reiniciar datos del juego al comenzar una nueva partida
-            datos_juego = reiniciar_datos_juego()
-            disponibilidad_comodines = reiniciar_comodines()
+        # if ventana_actual == "juego":
+        #     # Reiniciar datos del juego al comenzar una nueva partida
+        #     datos_juego = reiniciar_datos_juego()
+        #     disponibilidad_comodines = reiniciar_comodines()
     elif ventana_actual == "juego":
         # if bandera_musica == False:
         #     porcentaje_volumen = datos_juego["volumen_musica"] / 300

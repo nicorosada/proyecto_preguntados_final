@@ -53,16 +53,44 @@ mezclar_lista(lista_preguntas)
 indice = 0  # INMUTABLE -> En la funcion las declaro como global
 bandera_respuesta = False  # INMUTABLE -> En la funcion las declaro como global
 
+#tiempo
+cuenta_regresiva = 5
+tiempo_inicial = None
+
+
 
 def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict, comodines: dict, disponibilidad_comodines: dict) -> str:
     global indice
     global bandera_respuesta
     global cant_vidas
+    global tiempo_inicial
+    global cuenta_regresiva
 
     retorno = "juego"
 
     cuadro_pregunta["superficie"].blit(IMAGEN_PREGUNTA, (0, 0))
 
+    #tiempo
+    if tiempo_inicial is None:
+        tiempo_inicial = pygame.time.get_ticks()  # Registra el tiempo al inicio de la pregunta
+
+    tiempo_actual = pygame.time.get_ticks()  # Tiempo actual en milisegundos
+    tiempo_transcurrido = (tiempo_actual - tiempo_inicial) // 1000  # Convierte a segundos
+    tiempo_restante = cuenta_regresiva - tiempo_transcurrido
+
+    if tiempo_restante == 0:
+        # Tiempo agotado, pasa a la siguiente pregunta
+        cant_vidas -= 1
+        datos_juego["vidas"] = cant_vidas
+        indice += 1
+        if indice >= len(lista_preguntas):  # Si se llega al final, reinicia el índice
+            indice = 0
+            mezclar_lista(lista_preguntas)
+        tiempo_inicial = None  # Reinicia el tiempo para la siguiente pregunta
+        bandera_respuesta = True  # Marca para que la pantalla se actualice
+        if cant_vidas == 0:
+            bandera_respuesta = False
+            retorno = "terminado"
 
     if bandera_respuesta:
         pygame.time.delay(500)
@@ -118,6 +146,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
 
                     print(f"SE HIZO CLICK EN UNA RESPUESTA {respuesta_usuario}")
                     bandera_respuesta = True
+                    tiempo_inicial = None
                 
                     if indice == len(lista_preguntas):
                         indice = 0
@@ -134,7 +163,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(cartas_respuestas[0]["superficie"], f"{pregunta_actual['respuesta_1']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[1]["superficie"], f"{pregunta_actual['respuesta_2']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[2]["superficie"], f"{pregunta_actual['respuesta_3']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
-    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_4']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_correcta']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
 
     # pantalla.fill(COLOR_AZUL)
     pantalla.blit(fondo, (0, 0))
@@ -157,5 +186,6 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     # Muestra puntuación y vidas
     mostrar_texto(pantalla, f"PUNTUACION: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
     mostrar_texto(pantalla, f"VIDAS: {datos_juego['vidas']}", (10, 40), fuente_texto, COLOR_NEGRO)
+    mostrar_texto(pantalla, f"TIEMPO: {max(0, tiempo_restante)}", (10, 70), fuente_texto, COLOR_NEGRO)
 
     return retorno

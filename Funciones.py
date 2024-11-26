@@ -56,3 +56,7 @@ def reiniciar_comodines() -> dict:
         "comodin_x2": True
     }
    
+def reiniciar_juego():
+    global indice, bandera_respuesta
+    indice = 0
+    bandera_respuesta = False
