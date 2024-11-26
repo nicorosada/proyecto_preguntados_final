@@ -18,6 +18,10 @@ IMAGEN_BLANCA = pygame.image.load("boton_respuesta.png")
 IMAGEN_VERDE = pygame.image.load("boton_correcta.png")
 IMAGEN_ROJA = pygame.image.load("boton_incorrecta.png")
 
+#Carga de imagen para el fondo de el tiempo y puntuacion
+fondo_tiempo = pygame.image.load("fondo_tiempo.png")
+
+
 #Carga de imagen para comodines
 imagen_comodin_puntos_x2 = pygame.image.load("boton_x2.png")
 boton_comodin_puntos_x2 = {
@@ -48,13 +52,13 @@ for i in range(4):
 
 fuente_pregunta = pygame.font.SysFont("qatar-2022-book", 30)
 fuente_respuesta = pygame.font.SysFont("qatar-2022-book", 23)
-fuente_texto = pygame.font.SysFont("qatar-2022-book", 25)
+fuente_texto = pygame.font.SysFont("Roboto-Bold", 35)
 mezclar_lista(lista_preguntas)
 indice = 0  # INMUTABLE -> En la funcion las declaro como global
 bandera_respuesta = False  # INMUTABLE -> En la funcion las declaro como global
 
 #tiempo
-cuenta_regresiva = 15
+cuenta_regresiva = 10
 tiempo_inicial = None
 
 
@@ -89,6 +93,18 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
         if datos_juego ["vidas"] == 0:
             bandera_respuesta = False
             retorno = "terminado"
+        # Tiempo
+    if tiempo_restante <= 3:  # Cuando quedan 3 segundos o menos
+    # Alternar entre rojo y blanco basado en el tiempo (parpadeo)
+        if (pygame.time.get_ticks() // 500) % 2 == 0:  # Cambia cada 0.5 segundos
+            color_tiempo = COLOR_ROJO
+        else:
+                color_tiempo = COLOR_BLANCO
+    else:
+            color_tiempo = COLOR_NEGRO
+
+
+
 
     if bandera_respuesta:
         pygame.time.delay(500)
@@ -135,7 +151,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
                             datos_juego["aciertos_consecutivos"] = 0
                     else:
                         # Cambia el fondo a rojo si la respuesta es incorrecta
-                        # ERROR_SONIDO.play()
+                        ERROR_SONIDO.play()
                         cartas_respuestas[i]['superficie'] = IMAGEN_ROJA.copy()
                         # retorno = "terminado"
                         
@@ -164,6 +180,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
 
     # pantalla.fill(COLOR_AZUL)
     pantalla.blit(fondo, (0, 0))
+    pantalla.blit(fondo_tiempo,(0, 0))
     pantalla.blit(cuadro_pregunta["superficie"], (80, 180))
 
     # Dibuja las respuestas en la pantalla
@@ -181,8 +198,8 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
         # mostrar_texto(pantalla, "PASAR", (70, 450), fuente_texto, COLOR_BLANCO)
 
     # Muestra puntuación y vidas
-    mostrar_texto(pantalla, f"PUNTUACION: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
+    mostrar_texto(pantalla, f"PUNTOS: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
     mostrar_texto(pantalla, f"VIDAS: {datos_juego['vidas']}", (10, 40), fuente_texto, COLOR_NEGRO)
-    mostrar_texto(pantalla, f"TIEMPO: {max(0, tiempo_restante)}", (10, 70), fuente_texto, COLOR_NEGRO)
+    mostrar_texto(pantalla, f"TIEMPO: {max(0, tiempo_restante)}", (10, 70), fuente_texto, color_tiempo)
 
     return retorno

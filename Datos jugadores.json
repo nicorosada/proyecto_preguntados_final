@@ -1,52 +1,42 @@
 [
     {
-        "nombre": "PEPE",
+        "nombre": "MATI",
+        "puntaje": 425,
+        "fecha": "26/11/2024"
+    },
+    {
+        "nombre": "LOCAA",
+        "puntaje": 900,
+        "fecha": "26/11/2024"
+    },
+    {
+        "nombre": "sadsadsa",
+        "puntaje": 75,
+        "fecha": "26/11/2024"
+    },
+    {
+        "nombre": "peppe",
+        "puntaje": 50,
+        "fecha": "26/11/2024"
+    },
+    {
+        "nombre": "sa",
         "puntaje": 0,
         "fecha": "26/11/2024"
     },
     {
-        "nombre": "OADSOSA",
+        "nombre": "sa",
         "puntaje": 0,
         "fecha": "26/11/2024"
     },
     {
-        "nombre": "nicolas",
-        "puntaje": 0,
+        "nombre": "LOCOTRON",
+        "puntaje": 1175,
         "fecha": "26/11/2024"
     },
     {
-        "nombre": "prueba2",
-        "puntaje": 625,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "nicolas",
-        "puntaje": 700,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "asdf",
-        "puntaje": 525,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "dasd",
-        "puntaje": 25,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "dasd",
-        "puntaje": 25,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "232323",
-        "puntaje": 0,
-        "fecha": "26/11/2024"
-    },
-    {
-        "nombre": "hdhhdd",
-        "puntaje": 25,
+        "nombre": "AAA",
+        "puntaje": 250,
         "fecha": "26/11/2024"
     }
 ]
