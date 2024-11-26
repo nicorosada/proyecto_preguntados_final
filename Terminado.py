@@ -63,7 +63,7 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     nuevo_jugador = {"nombre": nombre, "puntaje": datos_juego["puntuacion"], "fecha": fecha_actual}
                     generar_json("Datos jugadores.json",nuevo_jugador)
                     print(f"Nombre guardado en JSON: {nombre}")
-                    cuadro['superficie'].fill(COLOR_NEGRO)
+                    cuadro['superficie'].fill(COLOR_BLANCO)
                     nombre = ""
                     reiniciar_datos_juego(datos_juego)
                     retorno = "menu"
