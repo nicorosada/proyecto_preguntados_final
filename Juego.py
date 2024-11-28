@@ -136,7 +136,9 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(cartas_respuestas[0]["superficie"], f"{pregunta_actual['respuesta_1']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[1]["superficie"], f"{pregunta_actual['respuesta_2']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
     mostrar_texto(cartas_respuestas[2]["superficie"], f"{pregunta_actual['respuesta_3']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
-    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_correcta']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    mostrar_texto(cartas_respuestas[3]["superficie"], f"{pregunta_actual['respuesta_4']}", (20, 20), fuente_respuesta, COLOR_NEGRO)
+    
+    
 
     # Dibuja el fondo
     pantalla.blit(fondo, (0, 0))
@@ -160,5 +162,7 @@ def mostrar_juego(pantalla: pygame.Surface, cola_eventos: list[pygame.event.Even
     mostrar_texto(pantalla, f"PUNTOS: {datos_juego['puntuacion']}", (10, 10), fuente_texto, COLOR_NEGRO)
     mostrar_texto(pantalla, f"VIDAS: {datos_juego['vidas']}", (10, 40), fuente_texto, COLOR_NEGRO)
     mostrar_texto(pantalla, f"TIEMPO: {max(0, tiempo_restante)}", (10, 70), fuente_texto, color_tiempo)
+
+    mostrar_texto(pantalla, f"{pregunta_actual['respuesta_correcta']}", (900,550), fuente_respuesta, COLOR_NEGRO)
 
     return retorno

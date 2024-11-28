@@ -108,5 +108,15 @@
         "nombre": "HUMBERTO",
         "puntaje": 450,
         "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "BBBBBBB",
+        "puntaje": 25,
+        "fecha": "28/11/2024"
+    },
+    {
+        "nombre": "POLLO",
+        "puntaje": 225,
+        "fecha": "28/11/2024"
     }
 ]

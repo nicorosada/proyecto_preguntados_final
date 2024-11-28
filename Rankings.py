@@ -36,7 +36,6 @@ def parse_json(nombre_archivo:str):
     return lista_elementos
 
 def ordenar_lista_ranking(lista_elementos:list)->list:
-    # lista_elementos = parse_json("Datos jugadores.json")
     lista_elementos.sort(key=lambda jugador: jugador["puntaje"], reverse=True)
     # Devolver solo los 10 mejores jugadores
     return lista_elementos[:10]
@@ -58,7 +57,6 @@ def mostrar_rankings(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Even
     pantalla.blit(imagen_menu,(165,70))
     boton_volver["rectangulo"] = pantalla.blit(boton_volver["superficie"],(10,10))
     mostrar_texto(boton_volver["superficie"],"Volver",(10,10),fuente_boton,COLOR_BLANCO)
-    # mostrar_texto(pantalla,f"Aca se debe mostrar el Top 10",(20,200),fuente,COLOR_NEGRO)
     lista_elementos = parse_json("Datos jugadores.json")
     lista_elementos = ordenar_lista_ranking(lista_elementos)
 

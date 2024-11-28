@@ -98,7 +98,7 @@ def reproducir_video(video_path, pantalla):
     pygame.mixer.music.stop()  # Detener la música al finalizar el video
 
 # Reproducir el video de introducción
-# reproducir_video(VIDEO_PATH, pantalla)
+reproducir_video(VIDEO_PATH, pantalla)
 
 #Ciclo de vida
 while corriendo:

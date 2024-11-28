@@ -37,7 +37,6 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
 
     for evento in cola_eventos:
         if evento.type == pygame.QUIT:
-            #Estaria bueno forzarle al usuario que no pueda salir del juego hasta que guarde la puntuacion -> A gusto de ustedes
             retorno = "salir"
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             pass
