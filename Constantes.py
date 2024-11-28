@@ -24,7 +24,9 @@ CUADRO_TEXTO = (250,50)
 TAMAÑO_BOTON_VOLUMEN = (60,60)
 TAMAÑO_BOTON_VOLVER = (100,40)
 CLICK_SONIDO = pygame.mixer.Sound("sonido_click_futbol.mp3")
-ERROR_SONIDO = pygame.mixer.Sound("error.mp3")
+ACIERTO_SONIDO = pygame.mixer.Sound("sonido_acierto.mp3")
+ERROR_SONIDO = pygame.mixer.Sound("sonido_error2.mp3")
+COMODIN_SONIDO = pygame.mixer.Sound("sonido_comodin.mp3")
 
 CANTIDAD_VIDAS = 3
 PUNTUACION_ACIERTO = 100

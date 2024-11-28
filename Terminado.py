@@ -29,7 +29,7 @@ cuadro["rectangulo"] = cuadro["superficie"].get_rect()
 cuadro['superficie'].fill(COLOR_BLANCO)
 nombre = ""
 
-def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],datos_juego:dict) -> str:
+def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Event],datos_juego:dict,disponibilidad_comodines:dict) -> str:
     global nombre
     retorno = "terminado"
 
@@ -65,7 +65,7 @@ def mostrar_fin_juego(pantalla:pygame.Surface,cola_eventos:list[pygame.event.Eve
                     print(f"Nombre guardado en JSON: {nombre}")
                     cuadro['superficie'].fill(COLOR_BLANCO)
                     nombre = ""
-                    reiniciar_datos_juego(datos_juego)
+                    reiniciar_datos_juego_y_comodines(datos_juego, disponibilidad_comodines)
                     retorno = "menu"
             print(letra_presionada)
         

@@ -98,7 +98,7 @@ def reproducir_video(video_path, pantalla):
     pygame.mixer.music.stop()  # Detener la música al finalizar el video
 
 # Reproducir el video de introducción
-reproducir_video(VIDEO_PATH, pantalla)
+# reproducir_video(VIDEO_PATH, pantalla)
 
 #Ciclo de vida
 while corriendo:
@@ -107,10 +107,6 @@ while corriendo:
     
     if ventana_actual == "menu":
         ventana_actual = mostrar_menu(pantalla,cola_eventos)
-        # if ventana_actual == "juego":
-        #     # Reiniciar datos del juego al comenzar una nueva partida
-        #     datos_juego = reiniciar_datos_juego()
-        #     disponibilidad_comodines = reiniciar_comodines()
     elif ventana_actual == "juego":
         if bandera_musica == False:
             porcentaje_volumen = datos_juego["volumen_musica"] / 300
@@ -127,7 +123,7 @@ while corriendo:
         if bandera_musica == True:
             pygame.mixer.music.stop()
             bandera_musica = False
-        ventana_actual = mostrar_fin_juego(pantalla,cola_eventos,datos_juego)
+        ventana_actual = mostrar_fin_juego(pantalla,cola_eventos,datos_juego,disponibilidad_comodines)
     elif ventana_actual == "salir":
         corriendo = False
     

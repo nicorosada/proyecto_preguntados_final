@@ -4,6 +4,7 @@ from Funciones import mostrar_texto
 
 pygame.init()
 
+# Fuentes de los textos
 fuente_boton = pygame.font.SysFont("qatar-2022-book", 23)
 fuente_volumen = pygame.font.SysFont("qatar-2022-book", 35)
 
@@ -41,8 +42,7 @@ boton_desmutear = {
 }
 
 def mostrar_configuracion(
-    pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict
-) -> str:
+    pantalla: pygame.Surface, cola_eventos: list[pygame.event.Event], datos_juego: dict) -> str:
     retorno = "configuraciones"
 
     for evento in cola_eventos:
@@ -83,19 +83,12 @@ def mostrar_configuracion(
     boton_desmutear["rectangulo"] = pantalla.blit(boton_desmutear["superficie"], (520, 370))
     boton_volver["rectangulo"] = pantalla.blit(boton_volver["superficie"], (10, 10))
     
-
+    # Mostramos textos de los botones
     mostrar_texto(boton_suma["superficie"], "Vol +", (80, 13), fuente_boton, COLOR_BLANCO)
     mostrar_texto(boton_resta["superficie"], "Vol -", (80, 13), fuente_boton, COLOR_BLANCO)
     mostrar_texto(boton_mutear["superficie"], "Mutear", (65, 13), fuente_boton, COLOR_BLANCO)
     mostrar_texto(boton_desmutear["superficie"], "Desmutear", (45, 13), fuente_boton, COLOR_BLANCO)
-
-    mostrar_texto(
-        pantalla,
-        f"{datos_juego['volumen_musica']} %",
-        (425, 460),
-        fuente_volumen,
-        COLOR_BLANCO,
-    )
+    mostrar_texto(pantalla,f"{datos_juego['volumen_musica']} %",(425, 460),fuente_volumen,COLOR_BLANCO)
 
     return retorno
 

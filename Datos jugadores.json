@@ -38,5 +38,75 @@
         "nombre": "AAA",
         "puntaje": 250,
         "fecha": "26/11/2024"
+    },
+    {
+        "nombre": "JOSE",
+        "puntaje": 325,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "LOLO",
+        "puntaje": 325,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "LOLO",
+        "puntaje": 325,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "KIKE",
+        "puntaje": 525,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "MIGUEL",
+        "puntaje": 1075,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "JOSE",
+        "puntaje": 125,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "PATRICIO",
+        "puntaje": 0,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "PATO",
+        "puntaje": 0,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "PEPE",
+        "puntaje": 0,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "LIO",
+        "puntaje": 50,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "PEPE",
+        "puntaje": 25,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "PEPE",
+        "puntaje": 750,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "JOSE",
+        "puntaje": 425,
+        "fecha": "27/11/2024"
+    },
+    {
+        "nombre": "HUMBERTO",
+        "puntaje": 450,
+        "fecha": "27/11/2024"
     }
 ]
